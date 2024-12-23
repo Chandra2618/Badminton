@@ -1,39 +1,65 @@
-// Wait until the DOM content is fully loaded before running the script
-document.addEventListener("DOMContentLoaded", function() {
-    // Create the "Back to Top" button
-    let backToTopButton = document.createElement("button");
-    backToTopButton.innerText = "Back to Top";
-    backToTopButton.id = "backToTop";
-    document.body.appendChild(backToTopButton);
+// Create the Go to Top button
+const goToTopButton = document.createElement('button');
+goToTopButton.textContent = 'Go to Top';
+goToTopButton.className = 'go-to-top-button';
 
-    // Style the button (You can also move this to your CSS)
-    backToTopButton.style.position = "fixed";
-    backToTopButton.style.bottom = "20px";
-    backToTopButton.style.right = "20px";
-    backToTopButton.style.backgroundColor = "#007BFF";
-    backToTopButton.style.color = "white";
-    backToTopButton.style.border = "none";
-    backToTopButton.style.padding = "15px";
-    backToTopButton.style.borderRadius = "5px";
-    backToTopButton.style.fontSize = "16px";
-    backToTopButton.style.cursor = "pointer";
-    backToTopButton.style.display = "none"; // Initially hidden
-    backToTopButton.style.zIndex = "1000"; // Ensure it's on top of other content
+// Add styles for the Go to Top button
+const style = document.createElement('style');
+style.textContent = `
+    .go-to-top-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        z-index: 1000;
+    }
+    .go-to-top-button:hover {
+        background-color: #218838;
+    }
+    .login-button {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        z-index: 1000;
+    }
+    .login-button:hover {
+        background-color: #0056b3;
+    }
+`;
+document.head.appendChild(style);
 
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            backToTopButton.style.display = "block"; // Show the button
-        } else {
-            backToTopButton.style.display = "none"; // Hide the button
-        }
-    };
-
-    // When the user clicks the button, scroll to the top of the document
-    backToTopButton.onclick = function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth' // Smooth scroll back to the top
-        });
-    };
+// Add a click event listener for the Go to Top button
+goToTopButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+// Append the Go to Top button to the body
+document.body.appendChild(goToTopButton);
+
+// Create the login button
+const loginButton = document.createElement('button');
+loginButton.textContent = 'Login';
+loginButton.className = 'login-button';
+
+// Add a click event listener for the Login button
+loginButton.addEventListener('click', () => {
+    alert('Redirecting to login page...');
+    // Redirect to login page (replace with your actual login page URL)
+    window.location.href = '/login';
+});
+
+// Append the login button to the body
+document.body.appendChild(loginButton);
